@@ -6,15 +6,16 @@ phases:
   pre_build:
     commands:
       - echo logging in to AWS ECR...
-      - $(aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin  962804699607.dkr.ecr.us-west-2.amazonaws.com/group2-cap2-ecr-repo)
+      - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 962804699607.dkr.ecr.us-west-2.amazonaws.com
   build:
     commands:
         - echo build Docker image on `date`
         - cd src
         - docker build -t group2_cap2_image1:latest .
-        - docker tag group2_cap2_docker:latest 962804699607.dkr.ecr.us-west-2.amazonaws.com/group2-cap2-ecr-repo:latest
+        - docker tag group2-cap2-ecr-repo:latest 962804699607.dkr.ecr.us-west-2.amazonaws.com/group2-cap2-ecr-repo:latest
   post_build:
     commands:
         - echo build Docker image complete `date`
         - echo push latest Docker images to ECR...
         - docker push 962804699607.dkr.ecr.us-west-2.amazonaws.com/group2-cap2-ecr-repo:latest
+        
