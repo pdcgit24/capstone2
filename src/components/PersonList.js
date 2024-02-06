@@ -16,7 +16,6 @@ export default class PersonList extends React.Component {
 
   render() {
     return (
-      <h1> Group2 Updates! </h1>
       <ul>
         {
           this.state.persons
